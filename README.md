@@ -6,7 +6,7 @@
 
 ## 当前定位
 
-`v0.1.0` 是一个最小可用底座，而不是完整科研自动化系统。
+`v0.2.0` 仍然是一个轻量底座，不是完整科研自动化系统。
 
 它提供：
 
@@ -14,18 +14,19 @@
 - 可复用工作流：`.codex/skills/`
 - Harness 状态文件：`.codex/harness-state.json`
 - 本地检查脚本：`scripts/`
-- GitHub CI 健康检查：`.github/workflows/harness-check.yml`
+- GitHub CI 健康检查
+- 第一个科研专用审查 skill
 
-科研能力后续通过专用 skill 扩展，不把核心 Harness 做成复杂大系统。
+科研能力后续继续通过专用 skill 扩展，不把核心 Harness 做成复杂大系统。
 
 ## 当前内置 Skills
 
 - `harness-mode`：切换或查看 Harness mode / phase。
-- `harness-review`：运行本地审查脚本并总结报告。
+- `harness-review`：运行通用本地审查脚本并总结报告。
+- `research-review`：检查实验产物、模型权重、本机绝对路径，以及可能的 oracle / target-label 使用。
 
 后续可以继续添加：
 
-- `research-review`：科研代码和实验可信度审查。
 - `experiment-runner`：运行实验、记录命令和输出。
 - `paper-sync`：检查论文数字、图表和结果文件是否一致。
 
@@ -36,24 +37,27 @@
 ```bash
 node scripts/check-codex.mjs
 node scripts/codex-harness-review.mjs
+node scripts/research-harness-review.mjs
 ```
 
 ## 当前结构
 
 ```text
 .
-├── AGENTS.md
-├── .codex/
-│   ├── harness-state.json
-│   └── skills/
-│       ├── harness-mode/
-│       └── harness-review/
-├── scripts/
-│   ├── check-codex.mjs
-│   └── codex-harness-review.mjs
-├── .github/workflows/harness-check.yml
-├── LICENSE
-└── package.json
+|-- AGENTS.md
+|-- .codex/
+|   |-- harness-state.json
+|   `-- skills/
+|       |-- harness-mode/
+|       |-- harness-review/
+|       `-- research-review/
+|-- scripts/
+|   |-- check-codex.mjs
+|   |-- codex-harness-review.mjs
+|   `-- research-harness-review.mjs
+|-- .github/workflows/harness-check.yml
+|-- LICENSE
+`-- package.json
 ```
 
 ## Attribution

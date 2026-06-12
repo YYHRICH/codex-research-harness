@@ -33,6 +33,16 @@ checks.push({
   ok: has("scripts/codex-harness-review.mjs"),
   hint: "Codex review script",
 });
+checks.push({
+  name: ".codex/skills/research-review/SKILL.md",
+  ok: has(".codex/skills/research-review/SKILL.md"),
+  hint: "Research review workflow",
+});
+checks.push({
+  name: "scripts/research-harness-review.mjs",
+  ok: has("scripts/research-harness-review.mjs"),
+  hint: "Research review script",
+});
 
 if (has(".codex/harness-state.json")) {
   try {

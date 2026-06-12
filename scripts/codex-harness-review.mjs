@@ -25,7 +25,12 @@ const readState = () => {
 
 const run = (cmd) => {
   try {
-    return execSync(cmd, { cwd: projectRoot, encoding: "utf-8", timeout: 8000 }).trim();
+    return execSync(cmd, {
+      cwd: projectRoot,
+      encoding: "utf-8",
+      stdio: ["ignore", "pipe", "ignore"],
+      timeout: 8000,
+    }).trim();
   } catch {
     return "";
   }
@@ -43,8 +48,13 @@ const isTweak = state.mode === "tweak";
 const changedFiles = isGitRepo ? unique([
   ...run("git diff --name-only").split("\n"),
   ...run("git diff --cached --name-only").split("\n"),
+  ...run("git ls-files --others --exclude-standard").split("\n"),
 ]) : [];
-const added = isGitRepo ? run("git diff --diff-filter=A --name-only").split("\n").filter(Boolean) : [];
+const untracked = isGitRepo ? run("git ls-files --others --exclude-standard").split("\n").filter(Boolean) : [];
+const added = isGitRepo ? unique([
+  ...run("git diff --diff-filter=A --name-only").split("\n"),
+  ...untracked,
+]) : [];
 const modified = isGitRepo ? run("git diff --diff-filter=M --name-only").split("\n").filter(Boolean) : [];
 const deleted = isGitRepo ? run("git diff --diff-filter=D --name-only").split("\n").filter(Boolean) : [];
 const diffStat = isGitRepo ? run("git diff --stat") : "";
@@ -79,7 +89,12 @@ const lockFiles = [
   "Cargo.lock",
   "Gemfile.lock",
 ];
-const depChanged = dependencyFiles.some((file) => changedFiles.some((changed) => changed.endsWith(file)));
+const packageJsonChanged = changedFiles.some((changed) => changed.endsWith("package.json"));
+const packageDependencyFieldsChanged = packageJsonChanged && /^[+-]\s*"(dependencies|devDependencies|peerDependencies|optionalDependencies)"\s*:/m.test(diffContent);
+const nonPackageDepChanged = dependencyFiles
+  .filter((file) => file !== "package.json")
+  .some((file) => changedFiles.some((changed) => changed.endsWith(file)));
+const depChanged = packageDependencyFieldsChanged || nonPackageDepChanged;
 const lockChanged = lockFiles.some((file) => changedFiles.some((changed) => changed.endsWith(file)));
 
 const maxFiles = isFix ? 5 : isDesign ? 20 : 10;
