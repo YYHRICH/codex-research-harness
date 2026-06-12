@@ -4,17 +4,19 @@
 
 本项目基于 [Harness Starter](https://github.com/chenklein26-maker/Harness-Starter) 改造，原项目采用 MIT License。
 
-## 设计原则
+## 当前定位
 
-核心 Harness 保持很小，只负责通用底座：
+`v0.1.0` 是一个最小可用底座，而不是完整科研自动化系统。
 
-- `AGENTS.md`：Codex 长期项目规则。
-- `.codex/skills/`：可复用工作流。
-- `.codex/harness-state.json`：当前 mode 和 phase。
-- `scripts/`：确定性的本地检查脚本。
-- `.codex/reviews/`：审查报告输出目录。
+它提供：
 
-科研能力通过专用 skill 扩展，不把核心 Harness 做成复杂大系统。
+- Codex 项目规则入口：`AGENTS.md`
+- 可复用工作流：`.codex/skills/`
+- Harness 状态文件：`.codex/harness-state.json`
+- 本地检查脚本：`scripts/`
+- GitHub CI 健康检查：`.github/workflows/harness-check.yml`
+
+科研能力后续通过专用 skill 扩展，不把核心 Harness 做成复杂大系统。
 
 ## 当前内置 Skills
 

@@ -1,6 +1,6 @@
 {
   "name": "codex-research-harness",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A lightweight Codex-native Harness for research coding and review discipline",
   "license": "MIT",
   "keywords": ["codex", "harness", "research", "skills", "review", "template"],
@@ -14,6 +14,7 @@
     ".gitignore",
     "scripts/",
     ".github/",
+    "CHANGELOG.md",
     "README.md",
     "README.en.md"
   ]
