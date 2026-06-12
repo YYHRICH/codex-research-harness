@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.3.1
+
+Clarify project positioning as a project-specific Harness starter.
+
+- Reframe README around clone-and-adapt workflow.
+- Emphasize `research-init` as the main adaptation entrypoint.
+- Clarify that generated research records are editable drafts, not universal policy.
+- Update package description.
+
 ## v0.3.0
 
 Add adaptive research record initialization.
