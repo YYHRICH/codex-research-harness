@@ -1,0 +1,5 @@
+node_modules/
+.codex/reviews/
+.DS_Store
+Thumbs.db
+*.local.json

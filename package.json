@@ -1,0 +1,20 @@
+{
+  "name": "codex-research-harness",
+  "version": "1.0.0",
+  "description": "A lightweight Codex-native Harness for research coding and review discipline",
+  "license": "MIT",
+  "keywords": ["codex", "harness", "research", "skills", "review", "template"],
+  "scripts": {
+    "check:codex": "node scripts/check-codex.mjs",
+    "review:codex": "node scripts/codex-harness-review.mjs"
+  },
+  "files": [
+    ".codex/",
+    "AGENTS.md",
+    ".gitignore",
+    "scripts/",
+    ".github/",
+    "README.md",
+    "README.en.md"
+  ]
+}
