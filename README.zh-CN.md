@@ -136,8 +136,24 @@ node scripts/research-harness-review.mjs
 `-- package.json
 ```
 
-## Attribution
+## 和原 Harness Starter 的关系
 
-本项目是原 [Harness Starter](https://github.com/chenklein26-maker/Harness-Starter) 的 Codex 科研向改造版本。
+本项目基于 chenklein26-maker 的原始 Harness Starter：
 
-当前版本已移除 Claude 专用 hook 文件，保留 MIT License，并转为 Codex-first、skill-based 的项目专属科研 Harness 生成流程。
+https://github.com/chenklein26-maker/Harness-Starter
+
+原项目提出了一个很有价值的思路：把 AI 编码护栏放进仓库里，包括持久化说明、工作模式、敏感文件保护规则和变更审查习惯。Codex Research Harness Starter 保留了这个思想，但改变了产品方向。
+
+这个版本不是 Claude Code hook 模板，而是一个面向科研仓库的 Codex-first starter。
+
+我们做了这些改造：
+
+- 用 `AGENTS.md`、`.codex/skills/` 和显式 Node.js 脚本替代 `CLAUDE.md` 与 Claude hook 假设。
+- 把核心目标从通用 AI 编码护栏，转向“生成项目专属科研 Harness”。
+- 把 `research-init` 作为主要入口，让它根据项目证据生成可编辑的 `.codex/research-record.json` 记录契约。
+- 增加科研审查能力，用来检查实验产物、模型 checkpoint、本机路径，以及可能的 oracle 或 target-label 使用。
+- 避免把项目做成万能科研框架，而是提供一套小协议，让 Codex 根据每个科研项目自适应。
+
+简单说：原 Harness Starter 提供了“仓库内 AI 护栏”的模式；这个仓库把这个模式改造成 Codex-native、科研导向的 starter，用来帮助 Codex 为当前项目生成专属 Harness。
+
+原项目采用 MIT License。本项目保留该许可证，并在这里明确记录上游来源。

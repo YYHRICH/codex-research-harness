@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.3.3
+
+Expand upstream relationship documentation.
+
+- Replace the brief attribution section with a detailed explanation of how this project differs from the original Harness Starter.
+- Document the shift from Claude hook assumptions to Codex-native skills and scripts.
+- Clarify that this project keeps the guardrail pattern while focusing on project-specific research Harness generation.
+
 ## v0.3.2
 
 Expand README documentation.

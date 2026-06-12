@@ -157,11 +157,37 @@ node scripts/research-harness-review.mjs
 `-- package.json
 ```
 
-## Attribution
+## Relationship To Harness Starter
 
-Based on the original Harness Starter by chenklein26-maker:
+This project is based on the original Harness Starter by chenklein26-maker:
 
 https://github.com/chenklein26-maker/Harness-Starter
 
-This adaptation removes Claude-specific hook files and keeps a Codex-first,
-skill-based workflow for project-specific research Harness generation.
+The original project introduced the useful idea of keeping AI-coding guardrails
+inside a repository: persistent instructions, workflow modes, protected-file
+rules, and review habits. Codex Research Harness Starter keeps that spirit, but
+changes the product direction.
+
+This version is not a Claude Code hook template. It is a Codex-first starter for
+research repositories.
+
+What changed:
+
+- `CLAUDE.md` and Claude hook assumptions were replaced by `AGENTS.md`,
+  `.codex/skills/`, and explicit Node.js scripts.
+- The core purpose shifted from general AI-coding guardrails to
+  project-specific research Harness generation.
+- The main entrypoint became `research-init`, which creates an editable
+  `.codex/research-record.json` contract from project evidence.
+- Research-specific review checks were added for artifacts, checkpoints, local
+  paths, and possible oracle or target-label usage.
+- The project intentionally avoids becoming a universal research framework.
+  Instead, it gives Codex a small protocol for adapting itself to each research
+  project.
+
+In short: the original Harness Starter inspired the guardrail pattern. This
+repository turns that pattern into a Codex-native, research-oriented starter
+whose job is to help Codex generate a custom Harness for the current project.
+
+The original project is MIT licensed. This adaptation keeps the license and
+documents the upstream source here for attribution.
