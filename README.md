@@ -43,6 +43,23 @@ It does four things:
 The generated research contract is a draft. Users should review it before
 treating it as project policy.
 
+## Guardrail Map
+
+The AI-coding guardrails live directly in the repository:
+
+```text
+AGENTS.md                              Persistent Codex rules
+.codex/harness-state.json              Current Harness state
+.codex/skills/harness-mode/            Mode and phase switching
+.codex/skills/harness-review/          General review workflow
+.codex/skills/research-init/           Project-specific research initialization
+.codex/skills/research-review/         Research review workflow
+scripts/check-codex.mjs                Health check
+scripts/codex-harness-review.mjs       General change review
+scripts/research-init.mjs              Generate research record contract
+scripts/research-harness-review.mjs    Research risk review
+```
+
 ## Typical Workflow
 
 1. Clone or copy this starter into a research project.

@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.3.4
+
+Document the repository guardrail map.
+
+- Add a README section mapping each Harness file and script to its role.
+- Add the same guardrail map to the Chinese README.
+
 ## v0.3.3
 
 Expand upstream relationship documentation.

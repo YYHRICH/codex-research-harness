@@ -28,6 +28,23 @@ Codex Research Harness Starter 给 Codex 提供一套可重复的流程，让它
 
 生成的科研记录契约默认只是草案。用户确认后，它才应该成为项目规则。
 
+## 护栏映射表
+
+AI 编码护栏直接放在仓库里：
+
+```text
+AGENTS.md                              持久规则
+.codex/harness-state.json              当前 Harness 状态
+.codex/skills/harness-mode/            模式和阶段切换
+.codex/skills/harness-review/          通用审查工作流
+.codex/skills/research-init/           项目自适应初始化
+.codex/skills/research-review/         科研审查工作流
+scripts/check-codex.mjs                健康检查
+scripts/codex-harness-review.mjs       通用变更审查
+scripts/research-init.mjs              生成科研记录契约
+scripts/research-harness-review.mjs    科研风险审查
+```
+
 ## 典型使用流程
 
 1. 把这个 starter clone 或复制到科研项目中。
