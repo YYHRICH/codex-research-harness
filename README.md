@@ -13,28 +13,98 @@ This project is a research-oriented adaptation of
 [Harness Starter](https://github.com/chenklein26-maker/Harness-Starter). The
 original project is licensed under the MIT License.
 
-## How It Works
+## What This Harness Does
+
+Codex Research Harness Starter gives Codex a repeatable way to become useful
+inside a specific research repository.
+
+It does four things:
+
+1. **Establish project guardrails.**
+   `AGENTS.md` tells Codex to keep changes small, protect sensitive files,
+   prefer existing project style, and verify work before handoff.
+
+2. **Track the current work mode.**
+   `.codex/harness-state.json` records the active mode and phase. The
+   `harness-mode` skill lets Codex switch between normal work, hotfixes,
+   tweaks, design, build, and fix phases.
+
+3. **Generate a research record contract.**
+   `research-init` scans project evidence such as README files, dependencies,
+   scripts, directories, notebooks, configs, and paper files. It then creates an
+   editable `.codex/research-record.json` draft describing what this project
+   should record for reproducibility.
+
+4. **Review changes with research-aware checks.**
+   `harness-review` checks general AI-coding risks. `research-review` checks
+   research-specific risks such as generated artifacts, checkpoints, local
+   absolute paths, and possible oracle or target-label usage.
+
+The generated research contract is a draft. Users should review it before
+treating it as project policy.
+
+## Typical Workflow
 
 1. Clone or copy this starter into a research project.
-2. Ask Codex to run `research-init`.
-3. Review the generated `.codex/research-record.json` draft.
-4. Keep or edit the fields that matter for that project.
-5. Use `research-review` during development to check experiment hygiene.
+2. Ask Codex: `Run research-init and adapt this Harness to my project.`
+3. Preview the generated contract:
 
-The generated contract is intentionally a draft. It should be reviewed by the
-user before becoming project policy.
+   ```bash
+   node scripts/research-init.mjs --dry-run
+   ```
 
-## Current Scope
+4. Write the contract:
 
-`v0.3.1` provides:
+   ```bash
+   node scripts/research-init.mjs
+   ```
 
-- persistent Codex guidance in `AGENTS.md`
-- reusable workflows in `.codex/skills/`
-- project state in `.codex/harness-state.json`
-- deterministic local checks in `scripts/`
-- GitHub Actions health checks
-- adaptive research record initialization
-- lightweight research-focused review checks
+5. Review `.codex/research-record.json` and edit any unknown or project-specific
+   fields.
+6. During development, run:
+
+   ```bash
+   node scripts/codex-harness-review.mjs
+   node scripts/research-harness-review.mjs
+   ```
+
+## What `research-init` Generates
+
+`research-init` writes `.codex/research-record.json`.
+
+The draft includes:
+
+- `project_type`: broad inferred type, such as machine learning experiment,
+  data analysis, numerical simulation, algorithm research, paper reproduction,
+  or generic research project.
+- `confidence`: low, medium, or high confidence in the inference.
+- `evidence`: project clues used for the inference.
+- `record.required`: fields that should usually be recorded.
+- `record.optional`: useful but non-mandatory fields.
+- `artifacts`: likely metrics, logs, figures, and checkpoint patterns.
+- `candidate_commands`: scripts or package commands that may run experiments.
+- `unknowns`: items the user should confirm.
+- `privacy`: rules for avoiding secrets and machine-local paths.
+
+Example shape:
+
+```json
+{
+  "status": "draft",
+  "project_type": "machine-learning-experiment",
+  "confidence": "medium",
+  "record": {
+    "required": [
+      { "name": "command", "why": "Record the exact command used to reproduce a run." },
+      { "name": "dataset", "why": "ML results depend on dataset identity and version." },
+      { "name": "random_seed", "why": "Seeds affect training stability and metric variance." }
+    ],
+    "optional": [
+      { "name": "hardware", "why": "Useful when results depend on GPU, CPU, memory, or accelerator availability." }
+    ]
+  }
+}
+```
 
 ## Included Skills
 
@@ -56,6 +126,14 @@ node scripts/research-init.mjs
 node scripts/codex-harness-review.mjs
 node scripts/research-harness-review.mjs
 ```
+
+## What It Does Not Do
+
+- It does not claim to understand every scientific field out of the box.
+- It does not make generated contracts authoritative without user review.
+- It does not store secrets, tokens, credentials, or private data.
+- It does not replace experiment tracking tools; it creates lightweight project
+  rules that Codex can follow and review.
 
 ## Current Structure
 

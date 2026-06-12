@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.3.2
+
+Expand README documentation.
+
+- Explain what the Harness does in detail.
+- Document the typical clone-and-adapt workflow.
+- Describe the generated `.codex/research-record.json` contract.
+- Add explicit non-goals and safety boundaries.
+
 ## v0.3.1
 
 Clarify project positioning as a project-specific Harness starter.

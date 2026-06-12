@@ -1,6 +1,6 @@
 {
   "name": "codex-research-harness",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A Codex-native starter that adapts into a project-specific research Harness",
   "license": "MIT",
   "keywords": ["codex", "harness", "research", "skills", "review", "template"],
