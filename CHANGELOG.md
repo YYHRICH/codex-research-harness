@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.2.1
+
+Repository hygiene and README cleanup.
+
+- Use English `README.md` as the GitHub default.
+- Move the Chinese documentation to `README.zh-CN.md`.
+- Remove the legacy `README.en.md` naming.
+- Add `.gitattributes` to reduce cross-platform line-ending and encoding churn.
+- Avoid treating `https://` URLs as Windows absolute paths in research review.
+
 ## v0.2.0
 
 Add the first research-specific review workflow.

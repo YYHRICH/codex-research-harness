@@ -62,7 +62,7 @@ const diffContent = isGitRepo
   : "";
 
 const localPathChecks = [
-  { label: "Windows absolute path", pattern: /[A-Za-z]:[\\/][^\s"'`]+/ },
+  { label: "Windows absolute path", pattern: /(?:^|[^A-Za-z])(?:[A-Za-z]:[\\/][^\s"'`]+)/ },
   { label: "Unix home path", pattern: /\/home\/[A-Za-z0-9_.-]+[^\s"'`]*/ },
   { label: "macOS user path", pattern: /\/Users\/[A-Za-z0-9_.-]+[^\s"'`]*/ },
 ];

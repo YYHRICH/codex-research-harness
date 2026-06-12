@@ -1,38 +1,44 @@
 # Codex Research Harness
 
-一个轻量的 Codex 科研 Harness，用来约束科研代码修改、保护敏感文件、保持小步变更，并在交付前生成审查报告。
+[Chinese](README.zh-CN.md)
 
-本项目基于 [Harness Starter](https://github.com/chenklein26-maker/Harness-Starter) 改造，原项目采用 MIT License。
+A lightweight Codex-native Harness for research coding, experiment hygiene, and
+small-change review discipline.
 
-## 当前定位
+This project is a research-oriented adaptation of
+[Harness Starter](https://github.com/chenklein26-maker/Harness-Starter). The
+original project is licensed under the MIT License.
 
-`v0.2.0` 仍然是一个轻量底座，不是完整科研自动化系统。
+## Current Scope
 
-它提供：
+`v0.2.1` is still a small Harness foundation, not a full research automation
+system.
 
-- Codex 项目规则入口：`AGENTS.md`
-- 可复用工作流：`.codex/skills/`
-- Harness 状态文件：`.codex/harness-state.json`
-- 本地检查脚本：`scripts/`
-- GitHub CI 健康检查
-- 第一个科研专用审查 skill
+It provides:
 
-科研能力后续继续通过专用 skill 扩展，不把核心 Harness 做成复杂大系统。
+- persistent Codex guidance in `AGENTS.md`
+- reusable workflows in `.codex/skills/`
+- project state in `.codex/harness-state.json`
+- deterministic local checks in `scripts/`
+- GitHub Actions health checks
+- a first research-focused review skill
 
-## 当前内置 Skills
+Future research behavior should continue to be added as focused skills instead
+of making the core Harness heavy.
 
-- `harness-mode`：切换或查看 Harness mode / phase。
-- `harness-review`：运行通用本地审查脚本并总结报告。
-- `research-review`：检查实验产物、模型权重、本机绝对路径，以及可能的 oracle / target-label 使用。
+## Included Skills
 
-后续可以继续添加：
+- `harness-mode`: switch or inspect the current Harness mode and phase.
+- `harness-review`: run the general local review script and summarize the report.
+- `research-review`: run research-focused checks for experiment artifacts,
+  checkpoints, local absolute paths, and possible oracle or target-label usage.
 
-- `experiment-runner`：运行实验、记录命令和输出。
-- `paper-sync`：检查论文数字、图表和结果文件是否一致。
+Planned skills can be added later, for example `experiment-runner` or
+`paper-sync`.
 
-## 常用命令
+## Commands
 
-在仓库根目录运行：
+Run from the repository root:
 
 ```bash
 node scripts/check-codex.mjs
@@ -40,7 +46,7 @@ node scripts/codex-harness-review.mjs
 node scripts/research-harness-review.mjs
 ```
 
-## 当前结构
+## Current Structure
 
 ```text
 .
@@ -62,6 +68,9 @@ node scripts/research-harness-review.mjs
 
 ## Attribution
 
-本项目是原 [Harness Starter](https://github.com/chenklein26-maker/Harness-Starter) 的 Codex 科研向改造版本。
+Based on the original Harness Starter by chenklein26-maker:
 
-当前版本已移除 Claude 专用 hook 文件，保留 MIT License，并转为 Codex-first、skill-based 的科研开发工作流。
+https://github.com/chenklein26-maker/Harness-Starter
+
+This adaptation removes Claude-specific hook files and keeps a Codex-first,
+skill-based workflow for research projects.
