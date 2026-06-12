@@ -11,7 +11,7 @@ original project is licensed under the MIT License.
 
 ## Current Scope
 
-`v0.2.1` is still a small Harness foundation, not a full research automation
+`v0.3.0` is still a small Harness foundation, not a full research automation
 system.
 
 It provides:
@@ -22,6 +22,7 @@ It provides:
 - deterministic local checks in `scripts/`
 - GitHub Actions health checks
 - a first research-focused review skill
+- adaptive research record initialization
 
 Future research behavior should continue to be added as focused skills instead
 of making the core Harness heavy.
@@ -30,6 +31,8 @@ of making the core Harness heavy.
 
 - `harness-mode`: switch or inspect the current Harness mode and phase.
 - `harness-review`: run the general local review script and summarize the report.
+- `research-init`: infer what the current research project should record and
+  generate `.codex/research-record.json`.
 - `research-review`: run research-focused checks for experiment artifacts,
   checkpoints, local absolute paths, and possible oracle or target-label usage.
 
@@ -42,6 +45,7 @@ Run from the repository root:
 
 ```bash
 node scripts/check-codex.mjs
+node scripts/research-init.mjs --dry-run
 node scripts/codex-harness-review.mjs
 node scripts/research-harness-review.mjs
 ```
@@ -56,10 +60,12 @@ node scripts/research-harness-review.mjs
 |   `-- skills/
 |       |-- harness-mode/
 |       |-- harness-review/
+|       |-- research-init/
 |       `-- research-review/
 |-- scripts/
 |   |-- check-codex.mjs
 |   |-- codex-harness-review.mjs
+|   |-- research-init.mjs
 |   `-- research-harness-review.mjs
 |-- .github/workflows/harness-check.yml
 |-- LICENSE

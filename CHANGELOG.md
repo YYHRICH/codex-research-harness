@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.3.0
+
+Add adaptive research record initialization.
+
+- Add `research-init` skill.
+- Add `scripts/research-init.mjs`.
+- Generate `.codex/research-record.json` drafts from project evidence.
+- Infer broad research project types and recommended record fields.
+- Add `init:research` package script.
+- Include research init in the Codex health check.
+
 ## v0.2.1
 
 Repository hygiene and README cleanup.

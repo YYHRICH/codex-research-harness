@@ -8,7 +8,7 @@
 
 ## 当前定位
 
-`v0.2.1` 仍然是一个轻量底座，不是完整科研自动化系统。
+`v0.3.0` 仍然是一个轻量底座，不是完整科研自动化系统。
 
 它提供：
 
@@ -18,6 +18,7 @@
 - 本地检查脚本：`scripts/`
 - GitHub CI 健康检查
 - 第一个科研专用审查 skill
+- 自适应科研记录初始化
 
 科研能力后续继续通过专用 skill 扩展，不把核心 Harness 做成复杂大系统。
 
@@ -25,6 +26,7 @@
 
 - `harness-mode`：切换或查看 Harness mode / phase。
 - `harness-review`：运行通用本地审查脚本并总结报告。
+- `research-init`：根据当前科研项目生成 `.codex/research-record.json` 记录契约草案。
 - `research-review`：检查实验产物、模型权重、本机绝对路径，以及可能的 oracle / target-label 使用。
 
 后续可以继续添加：
@@ -38,6 +40,7 @@
 
 ```bash
 node scripts/check-codex.mjs
+node scripts/research-init.mjs --dry-run
 node scripts/codex-harness-review.mjs
 node scripts/research-harness-review.mjs
 ```
@@ -52,10 +55,12 @@ node scripts/research-harness-review.mjs
 |   `-- skills/
 |       |-- harness-mode/
 |       |-- harness-review/
+|       |-- research-init/
 |       `-- research-review/
 |-- scripts/
 |   |-- check-codex.mjs
 |   |-- codex-harness-review.mjs
+|   |-- research-init.mjs
 |   `-- research-harness-review.mjs
 |-- .github/workflows/harness-check.yml
 |-- LICENSE
